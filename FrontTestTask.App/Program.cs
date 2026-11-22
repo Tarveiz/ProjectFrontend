@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using System;
 
-namespace FrontTestTask;
+namespace FrontTestTask.App;
 
 class Program
 {

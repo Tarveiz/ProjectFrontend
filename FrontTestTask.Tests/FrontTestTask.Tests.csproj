@@ -18,4 +18,8 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FrontTestTask.Common\FrontTestTask.Common.csproj" />
+  </ItemGroup>
+
 </Project>

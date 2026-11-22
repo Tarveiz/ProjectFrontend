@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 
-namespace FrontTestTask;
+namespace FrontTestTask.App;
 
 public partial class MainWindow : Window
 {

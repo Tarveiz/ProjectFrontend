@@ -1,5 +1,5 @@
 <Solution>
   <Project Path="FrontTestTask.Common/FrontTestTask.Common.csproj" Id="dad25392-def1-4c8c-9570-f706a22f3a5d" />
   <Project Path="FrontTestTask.Tests/FrontTestTask.Tests.csproj" Id="269f9e23-bdb1-4a2f-bfc4-0da1aaf48bd3" />
-  <Project Path="FrontTestTask/FrontTestTask.App.csproj" />
+  <Project Path="FrontTestTask.App/FrontTestTask.App.csproj" />
 </Solution>
