@@ -1,0 +1,49 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Design.PreviewWith>
+        <Border Padding="20" Background="{DynamicResource PageBrush}">
+            <StackPanel Spacing="8">
+                <StackPanel.Styles>
+                    <Style Selector="Border.swatch">
+                        <Setter Property="Width" Value="32" />
+                        <Setter Property="Height" Value="32" />
+                        <Setter Property="CornerRadius" Value="4" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+                        <Setter Property="BorderThickness" Value="1" />
+                    </Style>
+                    <Style Selector="StackPanel.row">
+                        <Setter Property="Orientation" Value="Horizontal" />
+                        <Setter Property="Spacing" Value="12" />
+                    </Style>
+                    <Style Selector="StackPanel.row > TextBlock">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+                </StackPanel.Styles>
+                <StackPanel Classes="row"><Border Classes="swatch" Background="{DynamicResource PageBrush}" /><TextBlock Text="PageBrush" /></StackPanel>
+                <StackPanel Classes="row"><Border Classes="swatch" Background="{DynamicResource CardBrush}" /><TextBlock Text="CardBrush" /></StackPanel>
+                <StackPanel Classes="row"><Border Classes="swatch" Background="{DynamicResource BorderBrush}" /><TextBlock Text="BorderBrush" /></StackPanel>
+                <StackPanel Classes="row"><Border Classes="swatch" Background="{DynamicResource AccentBrush}" /><TextBlock Text="AccentBrush" /></StackPanel>
+                <StackPanel Classes="row"><Border Classes="swatch" Background="{DynamicResource TextSecondaryBrush}" /><TextBlock Text="TextSecondaryBrush" /></StackPanel>
+                <StackPanel Classes="row"><Border Classes="swatch" Background="{DynamicResource ErrorBrush}" /><TextBlock Text="ErrorBrush" /></StackPanel>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+
+    <Color x:Key="PageColor">#F4F6FA</Color>
+    <Color x:Key="CardColor">#FFFFFF</Color>
+    <Color x:Key="BorderColor">#E2E6EE</Color>
+    <Color x:Key="AccentColor">#2563EB</Color>
+    <Color x:Key="TextSecondaryColor">#6B7280</Color>
+    <Color x:Key="ErrorColor">#DC2626</Color>
+
+    <SolidColorBrush x:Key="PageBrush" Color="{StaticResource PageColor}" />
+    <SolidColorBrush x:Key="CardBrush" Color="{StaticResource CardColor}" />
+    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}" />
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondaryColor}" />
+    <SolidColorBrush x:Key="ErrorBrush" Color="{StaticResource ErrorColor}" />
+
+    <CornerRadius x:Key="CardCornerRadius">8</CornerRadius>
+    <Thickness x:Key="CardPadding">16</Thickness>
+</ResourceDictionary>
