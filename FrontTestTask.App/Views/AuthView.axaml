@@ -9,6 +9,7 @@
 
     <DockPanel>
         <Button DockPanel.Dock="Bottom"
+                Classes="secondary"
                 Content="Регистрация"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Center"
@@ -17,6 +18,9 @@
 
         <Panel>
             <StackPanel Spacing="12" IsVisible="{Binding !IsAuthenticated}">
+                <StackPanel.KeyBindings>
+                    <KeyBinding Gesture="Enter" Command="{Binding LoginCommand}" />
+                </StackPanel.KeyBindings>
                 <TextBlock Classes="title" Text="Вход" />
                 <TextBox PlaceholderText="Email"
                          Text="{Binding Email}"
@@ -39,7 +43,8 @@
             <StackPanel Spacing="12" IsVisible="{Binding IsAuthenticated}">
                 <TextBlock Classes="title" Text="Вы вошли" />
                 <TextBlock Text="{Binding UserName}" TextWrapping="Wrap" />
-                <Button Content="Выйти"
+                <Button Classes="secondary"
+                        Content="Выйти"
                         HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Center"
                         Command="{Binding LogoutCommand}" />

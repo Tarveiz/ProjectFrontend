@@ -37,6 +37,15 @@
     <Color x:Key="TextSecondaryColor">#6B7280</Color>
     <Color x:Key="ErrorColor">#DC2626</Color>
 
+    <!-- Акцентные цвета темы Fluent: кнопки accent, фокус полей ввода, индикаторы загрузки. -->
+    <Color x:Key="SystemAccentColor">#2563EB</Color>
+    <Color x:Key="SystemAccentColorLight1">#3B82F6</Color>
+    <Color x:Key="SystemAccentColorLight2">#60A5FA</Color>
+    <Color x:Key="SystemAccentColorLight3">#93C5FD</Color>
+    <Color x:Key="SystemAccentColorDark1">#1D4ED8</Color>
+    <Color x:Key="SystemAccentColorDark2">#1E40AF</Color>
+    <Color x:Key="SystemAccentColorDark3">#1E3A8A</Color>
+
     <SolidColorBrush x:Key="PageBrush" Color="{StaticResource PageColor}" />
     <SolidColorBrush x:Key="CardBrush" Color="{StaticResource CardColor}" />
     <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}" />

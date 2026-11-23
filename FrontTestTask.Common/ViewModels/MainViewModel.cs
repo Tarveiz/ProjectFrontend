@@ -16,7 +16,7 @@ public sealed partial class MainViewModel : ViewModelBase
         CurrentSection = Sections.FirstOrDefault();
     }
 
-    public string Title => "FrontTestTask";
+    public string Title => "Тестовое задание: Avalonia MVVM";
 
     public IReadOnlyList<ISectionViewModel> Sections { get; }
 
