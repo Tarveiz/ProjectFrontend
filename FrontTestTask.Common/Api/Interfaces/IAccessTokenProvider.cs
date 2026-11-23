@@ -5,5 +5,5 @@
 /// </summary>
 public interface IAccessTokenProvider
 {
-    string? AccessToken { get; }
+    public string? AccessToken { get; }
 }

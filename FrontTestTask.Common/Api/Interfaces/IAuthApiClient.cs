@@ -9,13 +9,13 @@ namespace FrontTestTask.Common.Api.Interfaces;
 /// </summary>
 public interface IAuthApiClient
 {
-    Task<UserDto> RegisterAsync(RegisterRequest request, CancellationToken cancellationToken);
+    public Task<UserDto> RegisterAsync(RegisterRequest request, CancellationToken cancellationToken);
 
-    Task<LoginResponse> LoginAsync(LoginRequest request, CancellationToken cancellationToken);
+    public Task<LoginResponse> LoginAsync(LoginRequest request, CancellationToken cancellationToken);
 
-    Task<RefreshTokenResponse> RefreshAsync(string refreshToken, CancellationToken cancellationToken);
+    public Task<RefreshTokenResponse> RefreshAsync(string refreshToken, CancellationToken cancellationToken);
 
-    Task<UserDto> GetCurrentUserAsync(CancellationToken cancellationToken);
+    public Task<UserDto> GetCurrentUserAsync(CancellationToken cancellationToken);
 
-    Task LogoutAsync(string refreshToken, CancellationToken cancellationToken);
+    public Task LogoutAsync(string refreshToken, CancellationToken cancellationToken);
 }

@@ -1,6 +1,9 @@
 ﻿using System.Net;
+using CommunityToolkit.Mvvm.Messaging;
 using FrontTestTask.Common.Api;
 using FrontTestTask.Common.Api.Interfaces;
+using FrontTestTask.Common.Services;
+using FrontTestTask.Common.Services.Interfaces;
 using FrontTestTask.Common.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +19,11 @@ public static class CommonServiceCollectionExtensions
     public static IServiceCollection AddCommon(this IServiceCollection services, ApiOptions apiOptions)
     {
         services.AddSingleton(apiOptions);
+        services.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
+
+        services.AddSingleton<ISessionService, SessionService>();
+        services.AddSingleton<IAccessTokenProvider>(provider => provider.GetRequiredService<ISessionService>());
+        services.AddSingleton<IAuthService, AuthService>();
 
         services.AddTransient<AuthHeaderHandler>();
         services.AddHttpClient<IAuthApiClient, AuthApiClient>(client => ConfigureClient(client, apiOptions))
