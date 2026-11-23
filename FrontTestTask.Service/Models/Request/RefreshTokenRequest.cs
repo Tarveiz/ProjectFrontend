@@ -1,0 +1,6 @@
+﻿namespace FrontTestTask.Service.Models.Request;
+
+/// <summary>
+/// Тело запроса обновления токенов.
+/// </summary>
+public sealed record RefreshTokenRequest(string RefreshToken);

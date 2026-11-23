@@ -1,6 +1,7 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:FrontTestTask.Common.ViewModels"
+        xmlns:vm="clr-namespace:FrontTestTask.Common.ViewModels;assembly=FrontTestTask.Common"
+        xmlns:vmi="clr-namespace:FrontTestTask.Common.ViewModels.Interfaces;assembly=FrontTestTask.Common"
         x:Class="FrontTestTask.App.Views.MainWindow"
         x:DataType="vm:MainViewModel"
         Title="{Binding Title}"
@@ -10,14 +11,29 @@
 
     <Grid RowDefinitions="Auto,*" ColumnDefinitions="*,300" Margin="16">
 
-        <!-- Меню разделов -->
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                    Orientation="Horizontal" Spacing="8" Margin="0,0,0,12" />
+        <ItemsControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                      Margin="0,0,0,12"
+                      ItemsSource="{Binding Sections}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" Spacing="8" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="vmi:ISectionViewModel">
+                    <Button Classes="nav"
+                            Classes.selected="{Binding IsSelected}"
+                            Content="{Binding Title}"
+                            Command="{Binding $parent[ItemsControl].((vm:MainViewModel)DataContext).NavigateCommand}"
+                            CommandParameter="{Binding}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
-        <!-- Активный раздел -->
-        <Border Grid.Row="1" Grid.Column="0" Classes="card" Margin="0,0,12,0" />
+        <Border Grid.Row="1" Grid.Column="0" Classes="card" Margin="0,0,12,0">
+            <ContentControl Content="{Binding CurrentSection}" />
+        </Border>
 
-        <!-- Панель авторизации -->
         <Border Grid.Row="1" Grid.Column="1" Classes="card" />
     </Grid>
 </Window>

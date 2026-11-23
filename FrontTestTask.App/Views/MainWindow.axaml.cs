@@ -1,8 +1,14 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
 
-namespace FrontTestTask.App.Views;
-
-public partial class MainWindow : Window
+namespace FrontTestTask.App.Views
 {
-    public MainWindow() => InitializeComponent();
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+    }
 }

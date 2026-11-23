@@ -10,7 +10,15 @@
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
             </Border.Resources>
-            <Border Classes="card" Width="260" Height="140" />
+            <StackPanel Spacing="12">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Button Classes="nav selected" Content="Профиль" />
+                    <Button Classes="nav" Content="О разработчике" />
+                </StackPanel>
+                <Border Classes="card" Width="260" Height="140">
+                    <TextBlock Classes="title" Text="Заголовок" />
+                </Border>
+            </StackPanel>
         </Border>
     </Design.PreviewWith>
 
@@ -24,5 +32,26 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="{DynamicResource CardCornerRadius}" />
         <Setter Property="Padding" Value="{DynamicResource CardPadding}" />
+    </Style>
+
+    <Style Selector="TextBlock.title">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <Style Selector="Button.nav">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="14,6" />
+        <Setter Property="CornerRadius" Value="6" />
+    </Style>
+
+    <Style Selector="Button.nav.selected /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
+    <Style Selector="Button.nav.selected:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+        <Setter Property="Foreground" Value="White" />
     </Style>
 </Styles>
