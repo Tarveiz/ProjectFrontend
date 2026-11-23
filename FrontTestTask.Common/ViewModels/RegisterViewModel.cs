@@ -14,7 +14,7 @@ public sealed partial class RegisterViewModel : FormViewModelBase
     [NotifyDataErrorInfo]
     [NotifyCanExecuteChangedFor(nameof(RegisterCommand))]
     [Required(ErrorMessage = "Введите email")]
-    [EmailAddress(ErrorMessage = "Некорректный email")]
+    [RegularExpression(ValidationPatterns.Email, ErrorMessage = "Некорректный email")]
     private string _email = string.Empty;
 
     [ObservableProperty]

@@ -17,7 +17,7 @@ public sealed partial class AuthViewModel : FormViewModelBase
     [NotifyDataErrorInfo]
     [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
     [Required(ErrorMessage = "Введите email")]
-    [EmailAddress(ErrorMessage = "Некорректный email")]
+    [RegularExpression(ValidationPatterns.Email, ErrorMessage = "Некорректный email")]
     private string _email = string.Empty;
 
     [ObservableProperty]
