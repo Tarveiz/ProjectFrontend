@@ -28,6 +28,8 @@ dotnet run --project FrontTestTask.App
 
 Ссылки идут в одну сторону: App → Common → Service.
 
+Соответствие названиям из задания: MainView — `MainWindow`, View_1 — раздел «Профиль», View_2 — раздел «О разработчике».
+
 ## MVVM
 
 - Свойства, команды и валидация сделаны на CommunityToolkit.Mvvm.
@@ -44,11 +46,11 @@ dotnet run --project FrontTestTask.App
 ## NuGet-пакеты
 
 - Avalonia, Avalonia.Desktop, Avalonia.Themes.Fluent: UI-фреймворк и базовая тема.
-- Avalonia.Fonts.Inter: шрифт из шаблона проекта.
+- Avalonia.Fonts.Inter: одинаковый шрифт на всех ОС.
 - AvaloniaUI.DiagnosticsSupport: инструменты отладки UI, только в Debug.
 - CommunityToolkit.Mvvm: MVVM-фреймворк.
 - Microsoft.Extensions.DependencyInjection: внедрение зависимостей.
-- Microsoft.Extensions.Http: HttpClientFactory.
+- Microsoft.Extensions.Http: HttpClientFactory, управление HTTP-соединениями и подстановка токена в запросы.
 - Microsoft.Extensions.Logging.Abstractions, Microsoft.Extensions.Logging.Debug: логирование.
 
 ## Особенности тестового API
