@@ -9,6 +9,4 @@ namespace FrontTestTask.Service.Api;
 public sealed class ApiException(HttpStatusCode? statusCode, string message, Exception? innerException = null) : Exception(message, innerException)
 {
     public HttpStatusCode? StatusCode { get; } = statusCode;
-
-    public bool IsUnauthorized => StatusCode == HttpStatusCode.Unauthorized;
 }

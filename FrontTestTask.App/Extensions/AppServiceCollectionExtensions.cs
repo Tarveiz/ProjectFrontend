@@ -24,7 +24,6 @@ public static class AppServiceCollectionExtensions
     public static IServiceCollection AddServices(this IServiceCollection services, ApiOptions apiOptions)
     {
         services.AddLogging(builder => builder.AddDebug());
-        services.AddSingleton(apiOptions);
 
         services.AddSingleton<ISessionService, SessionService>();
         services.AddSingleton<IAccessTokenProvider>(provider => provider.GetRequiredService<ISessionService>());
