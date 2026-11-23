@@ -11,5 +11,56 @@
         <vm:AboutSectionViewModel />
     </Design.DataContext>
 
-    <TextBlock Classes="title" Text="{Binding Title}" />
+    <StackPanel Spacing="16">
+        <TextBlock Classes="title" Text="{Binding Title}" />
+
+        <StackPanel Spacing="4">
+            <TextBlock FontSize="18" FontWeight="SemiBold" Text="{Binding FullName}" />
+            <TextBlock Classes="secondary" Text="{Binding Position}" />
+            <TextBlock Classes="accent" Text="{Binding Goal}" />
+            <TextBlock Classes="secondary" Text="{Binding Experience}" />
+        </StackPanel>
+
+        <TextBlock Text="{Binding Summary}" TextWrapping="Wrap" />
+
+        <StackPanel Spacing="8">
+            <TextBlock Classes="label" Text="Стек" />
+            <ItemsControl ItemsSource="{Binding Skills}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <Border Classes="chip">
+                            <TextBlock Text="{Binding}" />
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+
+        <StackPanel Spacing="8">
+            <TextBlock Classes="label" Text="Языки" />
+            <ItemsControl ItemsSource="{Binding Languages}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <TextBlock Text="{Binding}" Margin="0,0,0,4" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+
+        <StackPanel Spacing="8">
+            <TextBlock Classes="label" Text="Контакты" />
+            <ItemsControl ItemsSource="{Binding Contacts}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <SelectableTextBlock Text="{Binding}" Margin="0,0,0,4" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </StackPanel>
 </UserControl>

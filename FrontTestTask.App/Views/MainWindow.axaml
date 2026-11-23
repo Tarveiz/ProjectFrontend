@@ -32,7 +32,9 @@
         </ItemsControl>
 
         <Border Grid.Row="1" Grid.Column="0" Classes="card" Margin="0,0,12,0">
-            <ContentControl Content="{Binding CurrentSection}" />
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                <ContentControl Content="{Binding CurrentSection}" Margin="0,0,20,0" />
+            </ScrollViewer>
         </Border>
 
         <Border Grid.Row="1" Grid.Column="1" Classes="card">

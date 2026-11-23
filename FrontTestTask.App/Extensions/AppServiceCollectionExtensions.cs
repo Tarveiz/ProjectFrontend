@@ -36,6 +36,10 @@ public static class AppServiceCollectionExtensions
             .SetHandlerLifetime(Timeout.InfiniteTimeSpan)
             .AddHttpMessageHandler<AuthHeaderHandler>();
 
+        services.AddHttpClient<IImageLoader, ImageLoader>(client => client.Timeout = apiOptions.Timeout)
+            .ConfigurePrimaryHttpMessageHandler(CreatePrimaryHandler)
+            .SetHandlerLifetime(Timeout.InfiniteTimeSpan);
+
         return services;
     }
 
