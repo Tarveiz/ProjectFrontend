@@ -4,10 +4,8 @@ using Avalonia.Markup.Xaml;
 using FrontTestTask.App.Extensions;
 using FrontTestTask.App.Infrastructure;
 using FrontTestTask.App.Views;
-using FrontTestTask.Common.Extensions;
 using FrontTestTask.Common.ViewModels;
 using FrontTestTask.Service.Api;
-using FrontTestTask.Service.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FrontTestTask.App;
@@ -25,7 +23,7 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            var services = new ServiceCollection().AddServices(new ApiOptions { BaseAddress = ApiBaseAddress }).AddCommon().AddApp().BuildServiceProvider();
+            var services = new ServiceCollection().AddServices(new ApiOptions { BaseAddress = ApiBaseAddress }).AddViewModels().AddViews().BuildServiceProvider();
 
             DataTemplates.Add(services.GetRequiredService<ViewLocator>());
 

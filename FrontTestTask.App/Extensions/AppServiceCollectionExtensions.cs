@@ -1,22 +1,58 @@
-﻿using Avalonia.Controls;
+﻿using System.Net;
+using Avalonia.Controls;
 using FrontTestTask.App.Infrastructure;
 using FrontTestTask.App.Views.Sections;
+using FrontTestTask.Common.ViewModels;
 using FrontTestTask.Common.ViewModels.Interfaces;
 using FrontTestTask.Common.ViewModels.Sections;
+using FrontTestTask.Service.Api;
+using FrontTestTask.Service.Api.Interfaces;
+using FrontTestTask.Service.Services;
+using FrontTestTask.Service.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace FrontTestTask.App.Extensions;
 
 /// <summary>
-/// Регистрация сервисов уровня UI.
+/// Регистрация зависимостей всех слоёв приложения.
 /// </summary>
 public static class AppServiceCollectionExtensions
 {
-    public static IServiceCollection AddApp(this IServiceCollection services)
+    private static readonly TimeSpan PooledConnectionLifetime = TimeSpan.FromMinutes(5);
+
+    public static IServiceCollection AddServices(this IServiceCollection services, ApiOptions apiOptions)
     {
         services.AddLogging(builder => builder.AddDebug());
+        services.AddSingleton(apiOptions);
+
+        services.AddSingleton<ISessionService, SessionService>();
+        services.AddSingleton<IAccessTokenProvider>(provider => provider.GetRequiredService<ISessionService>());
+        services.AddSingleton<IAuthService, AuthService>();
+
+        services.AddTransient<AuthHeaderHandler>();
+        services.AddHttpClient<IAuthApiClient, AuthApiClient>(client => ConfigureClient(client, apiOptions))
+            .ConfigurePrimaryHttpMessageHandler(CreatePrimaryHandler)
+            .SetHandlerLifetime(Timeout.InfiniteTimeSpan)
+            .AddHttpMessageHandler<AuthHeaderHandler>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddViewModels(this IServiceCollection services)
+    {
+        services.AddSingleton<MainViewModel>();
+        services.AddSingleton<AuthViewModel>();
+        services.AddTransient<RegisterViewModel>();
+        services.AddSingleton<Func<RegisterViewModel>>(provider => () => provider.GetRequiredService<RegisterViewModel>());
+
+        return services;
+    }
+
+    public static IServiceCollection AddViews(this IServiceCollection services)
+    {
         services.AddSingleton<ViewLocator>();
+        services.AddSingleton<IDialogService, DialogService>();
 
         services.AddSection<ProfileSectionViewModel, ProfileSectionView>();
         services.AddSection<AboutSectionViewModel, AboutSectionView>();
@@ -31,4 +67,13 @@ public static class AppServiceCollectionExtensions
 
         return services;
     }
+
+    private static void ConfigureClient(HttpClient client, ApiOptions apiOptions)
+    {
+        client.BaseAddress = apiOptions.BaseAddress;
+        client.Timeout = apiOptions.Timeout;
+    }
+
+    private static HttpMessageHandler CreatePrimaryHandler()
+        => new SocketsHttpHandler { PooledConnectionLifetime = PooledConnectionLifetime, AutomaticDecompression = DecompressionMethods.All };
 }

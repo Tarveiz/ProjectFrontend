@@ -9,8 +9,9 @@ public sealed partial class MainViewModel : ViewModelBase
     [ObservableProperty]
     private ISectionViewModel? _currentSection;
 
-    public MainViewModel(IEnumerable<ISectionViewModel> sections)
+    public MainViewModel(IEnumerable<ISectionViewModel> sections, AuthViewModel auth)
     {
+        Auth = auth;
         Sections = [.. sections.OrderBy(section => section.Order)];
         CurrentSection = Sections.FirstOrDefault();
     }
@@ -18,6 +19,8 @@ public sealed partial class MainViewModel : ViewModelBase
     public string Title => "FrontTestTask";
 
     public IReadOnlyList<ISectionViewModel> Sections { get; }
+
+    public AuthViewModel Auth { get; }
 
     [RelayCommand]
     private void Navigate(ISectionViewModel section) => CurrentSection = section;

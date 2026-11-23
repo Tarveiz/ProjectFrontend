@@ -1,0 +1,36 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:FrontTestTask.Common.ViewModels;assembly=FrontTestTask.Common"
+        mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="420"
+        x:Class="FrontTestTask.App.Views.RegisterWindow"
+        x:DataType="vm:RegisterViewModel"
+        Title="Регистрация"
+        Width="380"
+        SizeToContent="Height"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner">
+
+    <StackPanel Margin="20" Spacing="12">
+        <TextBlock Classes="title" Text="Регистрация" />
+        <TextBox PlaceholderText="Email"
+                 Text="{Binding Email}"
+                 IsEnabled="{Binding !RegisterCommand.IsRunning}" />
+        <TextBox PlaceholderText="Имя"
+                 Text="{Binding Name}"
+                 IsEnabled="{Binding !RegisterCommand.IsRunning}" />
+        <TextBox PlaceholderText="Пароль"
+                 PasswordChar="•"
+                 Text="{Binding Password}"
+                 IsEnabled="{Binding !RegisterCommand.IsRunning}" />
+        <ProgressBar IsIndeterminate="True" IsVisible="{Binding RegisterCommand.IsRunning}" />
+        <TextBlock Classes="error"
+                   Text="{Binding ErrorMessage}"
+                   IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+            <Button Content="Отмена" Command="{Binding CancelCommand}" />
+            <Button Classes="accent" Content="Зарегистрироваться" Command="{Binding RegisterCommand}" />
+        </StackPanel>
+    </StackPanel>
+</Window>

@@ -1,6 +1,7 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:FrontTestTask.Common.ViewModels;assembly=FrontTestTask.Common"
+        xmlns:views="using:FrontTestTask.App.Views"
         xmlns:vmi="clr-namespace:FrontTestTask.Common.ViewModels.Interfaces;assembly=FrontTestTask.Common"
         x:Class="FrontTestTask.App.Views.MainWindow"
         x:DataType="vm:MainViewModel"
@@ -34,6 +35,8 @@
             <ContentControl Content="{Binding CurrentSection}" />
         </Border>
 
-        <Border Grid.Row="1" Grid.Column="1" Classes="card" />
+        <Border Grid.Row="1" Grid.Column="1" Classes="card">
+            <views:AuthView DataContext="{Binding Auth}" />
+        </Border>
     </Grid>
 </Window>

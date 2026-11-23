@@ -5,4 +5,4 @@ namespace FrontTestTask.Common.ViewModels;
 /// <summary>
 /// Базовый класс ViewModel.
 /// </summary>
-public abstract class ViewModelBase : ObservableObject;
+public abstract class ViewModelBase : ObservableValidator;

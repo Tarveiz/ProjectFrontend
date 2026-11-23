@@ -1,0 +1,49 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:FrontTestTask.Common.ViewModels;assembly=FrontTestTask.Common"
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="450"
+             x:Class="FrontTestTask.App.Views.AuthView"
+             x:DataType="vm:AuthViewModel">
+
+    <DockPanel>
+        <Button DockPanel.Dock="Bottom"
+                Content="Регистрация"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Center"
+                IsVisible="{Binding !IsAuthenticated}"
+                Command="{Binding OpenRegistrationCommand}" />
+
+        <Panel>
+            <StackPanel Spacing="12" IsVisible="{Binding !IsAuthenticated}">
+                <TextBlock Classes="title" Text="Вход" />
+                <TextBox PlaceholderText="Email"
+                         Text="{Binding Email}"
+                         IsEnabled="{Binding !LoginCommand.IsRunning}" />
+                <TextBox PlaceholderText="Пароль"
+                         PasswordChar="•"
+                         Text="{Binding Password}"
+                         IsEnabled="{Binding !LoginCommand.IsRunning}" />
+                <Button Classes="accent"
+                        Content="Войти"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Command="{Binding LoginCommand}" />
+                <ProgressBar IsIndeterminate="True" IsVisible="{Binding LoginCommand.IsRunning}" />
+                <TextBlock Classes="error"
+                           Text="{Binding ErrorMessage}"
+                           IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+            </StackPanel>
+
+            <StackPanel Spacing="12" IsVisible="{Binding IsAuthenticated}">
+                <TextBlock Classes="title" Text="Вы вошли" />
+                <TextBlock Text="{Binding UserName}" TextWrapping="Wrap" />
+                <Button Content="Выйти"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Command="{Binding LogoutCommand}" />
+            </StackPanel>
+        </Panel>
+    </DockPanel>
+</UserControl>
